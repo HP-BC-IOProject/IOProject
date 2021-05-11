@@ -2,8 +2,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.nio.file.Files.exists;
 
@@ -31,6 +33,27 @@ public class IOProject {
         System.out.println("newContacts = " + newContacts);
 
         Files.write(PathtoContacts, newContacts);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Choose an option\n1. View contacts\n2. Add a New Contact\n3. Search a Contact by Name\n4. Delete an Existing Contact\n5. Exit Application");
+        int userInput = scanner.nextInt();
+
+        if (userInput == 1){
+            List<String> contactList = Files.readAllLines(PathtoContacts);
+            for (int i = 0; i < contactList.size(); i += 1) {
+                System.out.println((i + 1) + ": " + contactList.get(i));
+            }
+        } else if (userInput == 2){
+            System.out.println("Who would you like to add?");
+            String userInput2 = scanner.nextLine();
+
+            Files.write(
+                    Paths.get(contactDirectory, contactFile),
+                    Arrays.asList(), // list with one item
+                    StandardOpenOption.APPEND
+            );
+        }
 
 //    System.out.println("PathtoContacts = " + PathtoContacts);
 //
