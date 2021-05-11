@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static java.nio.file.Files.exists;
 
 public class IOProject {
-    
+
     public static void printContacts(Path filePath) throws IOException {
         System.out.println();
         List<String> fileContent  = Files.readAllLines(filePath);
@@ -36,6 +36,7 @@ public class IOProject {
 
         Scanner scanner = new Scanner(System.in);
 
+
         System.out.println("Choose an option\n1. View contacts\n2. Add a New Contact\n3. Search a Contact by Name\n4. Delete an Existing Contact\n5. Exit Application");
         int userInput = scanner.nextInt();
 
@@ -47,10 +48,9 @@ public class IOProject {
         } else if (userInput == 2){
             System.out.println("Who would you like to add?");
             String userInput2 = scanner.nextLine();
-
             Files.write(
                     Paths.get(contactDirectory, contactFile),
-                    Arrays.asList(), // list with one item
+                    Arrays.asList(userInput2), // list with one item
                     StandardOpenOption.APPEND
             );
         }
