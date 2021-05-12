@@ -3,6 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -44,9 +45,10 @@ public class IOProject {
 
             // NEED TO ASK ABOUT PUTTING ALL THIS IN A WHILE LOOP!!
 
+        List<String> contactList = Files.readAllLines(PathtoContacts);
 
         if (userInput == 1) {
-            List<String> contactList = Files.readAllLines(PathtoContacts);
+
             for (int i = 0; i < contactList.size(); i += 1) {
                 System.out.println((i + 1) + ": " + contactList.get(i));
             }
@@ -68,7 +70,43 @@ public class IOProject {
                     Arrays.asList(userInput2), // list with one item
                     StandardOpenOption.APPEND
             );
+
+            // ASK ABOUT LINKING THIS TO LINE 40!!
+            System.out.println("Do you wish to continue?");
+            String confirmUserInput = scanner.next();
+
+            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+
+            }
+
+        } else if (userInput == 3) {
+            System.out.println("Who would you like to search for?");
+            String searchUser = scanner.next();
+            System.out.println(contactList.contains(searchUser));
+
+            // ASK ABOUT LINKING THIS TO LINE 40!!
+            System.out.println("Do you wish to continue?");
+            String confirmUserInput = scanner.next();
+
+            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+
+            }
+
+            // ASK HOW TO DO A DELETE METHOD FOR REMOVING A PERSON!
+        } else if (userInput == 4) {
+            System.out.println("Who would you like to delete?");
+            String deleteUser = scanner.next();
+            System.out.println(contactList.remove(deleteUser));
+
+            // ASK ABOUT LINKING THIS TO LINE 40!!
+            System.out.println("Do you wish to continue?");
+            String confirmUserInput = scanner.next();
+
+            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+
+            }
         }
+
 
 
 //    System.out.println("PathtoContacts = " + PathtoContacts);
