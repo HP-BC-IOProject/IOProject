@@ -13,7 +13,7 @@ public class IOProject {
 
     public static void printContacts(Path filePath) throws IOException {
         System.out.println();
-        List<String> fileContent  = Files.readAllLines(filePath);
+        List<String> fileContent = Files.readAllLines(filePath);
         for (int i = 0; i < fileContent.size(); i++) {
             System.out.printf("%d: %s\n", i + 1, fileContent.get(i));
         }
@@ -36,24 +36,40 @@ public class IOProject {
 
         Scanner scanner = new Scanner(System.in);
 
+            // ASK HOW TO MAKE THIS INTO A VARIABLE!!
 
         System.out.println("Choose an option\n1. View contacts\n2. Add a New Contact\n3. Search a Contact by Name\n4. Delete an Existing Contact\n5. Exit Application");
+
         int userInput = scanner.nextInt();
 
-        if (userInput == 1){
+            // NEED TO ASK ABOUT PUTTING ALL THIS IN A WHILE LOOP!!
+
+
+        if (userInput == 1) {
             List<String> contactList = Files.readAllLines(PathtoContacts);
             for (int i = 0; i < contactList.size(); i += 1) {
                 System.out.println((i + 1) + ": " + contactList.get(i));
             }
-        } else if (userInput == 2){
+
+            // ASK ABOUT LINKING THIS TO LINE 40!
+
+            System.out.println("Do you wish to continue?");
+            String confirmUserInput = scanner.next();
+
+            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+
+            }
+
+        } else if (userInput == 2) {
             System.out.println("Who would you like to add?");
-            String userInput2 = scanner.nextLine();
+            String userInput2 = scanner.next();
             Files.write(
                     Paths.get(contactDirectory, contactFile),
                     Arrays.asList(userInput2), // list with one item
                     StandardOpenOption.APPEND
             );
         }
+
 
 //    System.out.println("PathtoContacts = " + PathtoContacts);
 //
@@ -71,6 +87,6 @@ public class IOProject {
 //        System.out.println("Do you want to add a person?");
 
 
-
     }
 }
+
