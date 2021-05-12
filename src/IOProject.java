@@ -39,73 +39,82 @@ public class IOProject {
 
             // ASK HOW TO MAKE THIS INTO A VARIABLE!!
 
-        System.out.println("Choose an option\n1. View contacts\n2. Add a New Contact\n3. Search a Contact by Name\n4. Delete an Existing Contact\n5. Exit Application");
+        String userMenu = "Choose an option\n1. View contacts\n2. Add a New Contact\n3. Search a Contact by Name\n4. Delete an Existing Contact\n5. Exit Application";
+
+        System.out.println(userMenu);
 
         int userInput = scanner.nextInt();
 
+        do {
             // NEED TO ASK ABOUT PUTTING ALL THIS IN A WHILE LOOP!!
+            System.out.println(userMenu);
+            List<String> contactList = Files.readAllLines(PathtoContacts);
 
-        List<String> contactList = Files.readAllLines(PathtoContacts);
+            if (userInput == 1) {
 
-        if (userInput == 1) {
+                for (int i = 0; i < contactList.size(); i += 1) {
+                    System.out.println((i + 1) + ": " + contactList.get(i));
+                }
 
-            for (int i = 0; i < contactList.size(); i += 1) {
-                System.out.println((i + 1) + ": " + contactList.get(i));
-            }
 
-            // ASK ABOUT LINKING THIS TO LINE 40!
+
+                // ASK ABOUT LINKING THIS TO LINE 40!
 
             System.out.println("Do you wish to continue?");
             String confirmUserInput = scanner.next();
 
             if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
-
+                System.out.println(userMenu);
             }
+            break;
 
-        } else if (userInput == 2) {
-            System.out.println("Who would you like to add?");
-            String userInput2 = scanner.next();
-            Files.write(
-                    Paths.get(contactDirectory, contactFile),
-                    Arrays.asList(userInput2), // list with one item
-                    StandardOpenOption.APPEND
-            );
+            } else if (userInput == 2) {
+                System.out.println("Who would you like to add?");
+                String userInput2 = scanner.next();
+                Files.write(
+                        Paths.get(contactDirectory, contactFile),
+                        Arrays.asList(userInput2), // list with one item
+                        StandardOpenOption.APPEND
+                );
+                break;
 
-            // ASK ABOUT LINKING THIS TO LINE 40!!
-            System.out.println("Do you wish to continue?");
-            String confirmUserInput = scanner.next();
+//            // ASK ABOUT LINKING THIS TO LINE 40!!
+//            System.out.println("Do you wish to continue?");
+//            String confirmUserInput = scanner.next();
+//
+//            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+//
+//            }
 
-            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+            } else if (userInput == 3) {
+                System.out.println("Who would you like to search for?");
+                String searchUser = scanner.next();
+                System.out.println(contactList.contains(searchUser));
 
+                // ASK ABOUT LINKING THIS TO LINE 40!!
+//            System.out.println("Do you wish to continue?");
+//            String confirmUserInput = scanner.next();
+//
+//            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+//
+//            }
+
+                // ASK HOW TO DO A DELETE METHOD FOR REMOVING A PERSON!
+            } else if (userInput == 4) {
+                System.out.println("Who would you like to delete?");
+                String deleteUser = scanner.next();
+                System.out.println(contactList.remove(deleteUser));
+
+//            // ASK ABOUT LINKING THIS TO LINE 40!!
+//            System.out.println("Do you wish to continue?");
+//            String confirmUserInput = scanner.next();
+//
+//            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
+//
+//            }
             }
+        } while (userInput == 0);
 
-        } else if (userInput == 3) {
-            System.out.println("Who would you like to search for?");
-            String searchUser = scanner.next();
-            System.out.println(contactList.contains(searchUser));
-
-            // ASK ABOUT LINKING THIS TO LINE 40!!
-            System.out.println("Do you wish to continue?");
-            String confirmUserInput = scanner.next();
-
-            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
-
-            }
-
-            // ASK HOW TO DO A DELETE METHOD FOR REMOVING A PERSON!
-        } else if (userInput == 4) {
-            System.out.println("Who would you like to delete?");
-            String deleteUser = scanner.next();
-            System.out.println(contactList.remove(deleteUser));
-
-            // ASK ABOUT LINKING THIS TO LINE 40!!
-            System.out.println("Do you wish to continue?");
-            String confirmUserInput = scanner.next();
-
-            if (confirmUserInput.equals("y") || confirmUserInput.equals("yes")) {
-
-            }
-        }
 
 
 
